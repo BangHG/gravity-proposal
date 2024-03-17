@@ -1,0 +1,31 @@
+﻿// https://github.com/orioncactus/pretendard
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css');
+// Pretendard
+
+// @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Noto+Serif+KR:wght@300;400&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&family=Noto+Serif+KR:wght@300;400&family=Poppins&display=swap');
+
+// @font-face {
+//   font-family: 'S-CoreDream-3Light';
+//   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+//   font-weight: normal;
+//   font-style: normal;
+// }
+
+// @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+// @font-face {
+//   font-family: 'NanumSquareRound';
+//   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+//   font-weight: normal;
+//   font-style: normal;
+// }
+
+//기본
+// $font-family:  'NanumSquareRound','NanumSquare','S-CoreDream-3Light',  'Pretendard', 'Montserrat', sans-serif;
+$font-family: 'Pretendard', 'Montserrat', sans-serif;
+
+//영문
+$font-family-sub: 'Montserrat', 'Noto Sans KR', sans-serif;
+
+$main-color: #00549c;
+$sub-color: #00adef;

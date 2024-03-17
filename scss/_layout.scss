@@ -1,0 +1,105 @@
+﻿html,
+body,
+a,
+button {
+  font-family: $font-family;
+}
+
+::selection {
+  color: #fff;
+  background-color: rgba($sub-color, 0.5);
+  // background: linear-gradient(to right, #14e4f2 0%, #143fdb 100%);
+}
+
+body {
+  position: relative;
+  overflow-x: hidden;
+  // overflow: hidden; //EASE SCROLL
+  @at-root {
+    body,
+    header {
+      min-width: 1600px;
+      width: 100%;
+    }
+  }
+  @at-root html,
+    body {
+    background: transparent;
+    overflow-x: hidden;
+    // width: 100vw;
+  }
+  &::-webkit-scrollbar {
+    background: transparent;
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: rgba($sub-color, 0.5);
+  }
+  &::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+  }
+}
+
+* {
+  &,
+  &:before,
+  &:after {
+    box-sizing: border-box;
+  }
+}
+.main {
+  // background: transparent;
+  // background-color: #000;
+  // transition: 900ms background;
+}
+.section {
+  overflow: hidden;
+  position: relative;
+  // background-color: #ff9;
+  // min-height: 100vh;
+}
+.container {
+  padding: 0 20px;
+  max-width: (1600px + 20px * 2);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.position-relative {
+  position: relative;
+}
+
+html {
+  background-color: #000;
+}
+
+body {
+  margin: 0 auto !important;
+  width: 100%;
+  height: auto;
+  overflow-x: hidden;
+  -webkit-transition: opacity 1000ms !important;
+  transition: opacity 1000ms !important;
+  opacity: 0;
+}
+
+body[data-loading='done'] {
+  opacity: 1;
+}

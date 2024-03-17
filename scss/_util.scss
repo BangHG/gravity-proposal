@@ -1,0 +1,311 @@
+﻿.dropdown {
+  display: inline-flex;
+  position: relative;
+  backface-visibility: hidden;
+  $dropdown-height: 50px;
+  $dropdown-padding: 22px - 4px;
+  &,
+  * {
+    font-family: $font-family-sub;
+    font-size: 18px;
+  }
+  &__btn {
+    height: $dropdown-height;
+    padding: 0 $dropdown-padding;
+    padding-right: $dropdown-padding * 2 + 3px;
+    border: 1px solid rgba(#fff, 0.5);
+
+    display: inline-flex;
+    align-items: center;
+    border-radius: $dropdown-height/2;
+    background-color: #111;
+    background-color: transparent;
+
+    background-color: rgba(#000, 0.8);
+    color: #fff;
+    font-weight: 500;
+    font-size: 18px;
+    position: relative;
+    &,
+    &:before,
+    * {
+      transition: all 200ms;
+    }
+    &.active:after {
+      transform: rotateX(180deg);
+    }
+    &:after {
+      content: '';
+      display: block;
+      background-image: url("data:image/svg+xml,%3Csvg width='13' height='9' viewBox='0 0 13 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6.5 7L12 1' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E%0A");
+      width: 13px;
+      height: 9px;
+      position: absolute;
+      right: $dropdown-padding;
+      top: 50%;
+      margin-top: -5px;
+      transition: transform 200ms;
+    }
+  }
+  &__drawer {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    border-radius: 20px; //$dropdown-height/2;
+    border: 1px solid rgba(#fff, 0.5);
+    width: 100%;
+    padding: $dropdown-padding 0;
+    background-color: rgba(#000, 0.8);
+    backface-visibility: hidden;
+    &__item {
+      // a {
+      //   padding: 0.5em 0;
+      //   // margin-top: 1em;
+      // }
+      // &:nth-child(1) a {
+      //   // margin-top: 0;
+      // }
+    }
+    .link {
+      width: 100%;
+      color: #fff;
+
+      display: flex;
+      padding: 0.5em $dropdown-padding;
+      align-items: center;
+      // height: $dropdown-height;
+      &:hover {
+        font-weight: 500;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+@mixin dropdownSizing($h, $padding, $drawPosition) {
+  .dropdown {
+    &__btn {
+      height: $h;
+      border-radius: $h/2;
+      padding: 0 $padding;
+      padding-right: $padding * 2 + 3px;
+      &:after {
+        right: $padding;
+      }
+    }
+
+    &__drawer {
+      padding: $padding 0;
+      .link {
+        padding-left: $padding;
+        padding-right: $padding;
+      }
+    }
+
+    @if ($drawPosition: 'upper') {
+      &__btn {
+        &:after {
+          transform: rotateX(180deg);
+        }
+
+        &.active:after {
+          transform: rotateX(0);
+        }
+      }
+      &__drawer {
+        bottom: calc(100% + 10px);
+        top: auto;
+      }
+    } @else {
+    }
+  }
+}
+
+.header__util--language {
+  .dropdown__btn {
+    min-width: 134px;
+    &:before {
+      content: '';
+      width: 27px;
+      height: 27px;
+      display: inline-block;
+      margin-right: 11px;
+      background: url(../images/i_language.png) no-repeat;
+    }
+  }
+}
+
+.scroll-down-btn,
+.scroll-top-btn {
+  display: block;
+  background-repeat: no-repeat;
+  width: 135px;
+  height: 135px;
+  &:before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: transform 500ms, opacity 500ms;
+    animation: 20s linear rollSpin infinite;
+    opacity: 0.5;
+  }
+  &:hover:before {
+    opacity: 1 !important;
+  }
+  @at-root {
+    .scroll-down-btn {
+      background-image: url(../images/section1/scrolldown.png);
+      &:before {
+        background-image: url(../images/section1/scrolldown-roll.png);
+      }
+    }
+    .scroll-top-btn {
+      background-image: url(../images/section5/top-btn.png);
+      &:before {
+        background-image: url(../images/section5/top-btn-roll.png);
+      }
+    }
+  }
+}
+
+.scroll-top-btn {
+  z-index: 50;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  margin-left: 800px;
+  transform: translateX(-100%);
+
+  opacity: 0;
+  // &.show {
+  //   opacity: 1;
+  // }
+  // &:not(.fix) {
+  &,
+  &:before {
+    mix-blend-mode: difference;
+  }
+  // }
+  &.fix {
+    opacity: 1;
+    // display: none;
+    position: absolute;
+    // background-color: yellow;
+    // right: 0;
+    top: 0;
+    bottom: auto;
+  }
+}
+@keyframes rollSpin {
+  // from {
+  //   transform: rotate(0);
+  // }
+  // to {
+
+  100% {
+    transform: rotate(360deg);
+  }
+  // }
+}
+
+// btn hover effect
+.btn-entered-effect {
+  position: relative;
+  overflow: hidden;
+  *,
+  & {
+    transition: 300ms all;
+  }
+  &__content {
+    position: relative;
+    z-index: 2;
+  }
+  &__overlay {
+    background-color: #fff;
+    transition: min-width 300ms cubic-bezier(0, 0, 0.58, 0.32), min-height 300ms cubic-bezier(0, 0, 0.58, 0.32);
+    display: block;
+    min-width: 0;
+    min-height: 0;
+    aspect-ratio: 1;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 1;
+  }
+  &:hover {
+    // .btn-entered-effect__content {
+    // }
+    .btn-entered-effect__overlay {
+      min-height: 210%;
+      min-width: 210%;
+    }
+  }
+}
+
+// 커서
+#cursor {
+  $color: $sub-color;
+  @at-root html {
+    *,
+    & {
+      cursor: none !important;
+    }
+  }
+  z-index: 500;
+  &,
+  &__trace {
+    // transition: all 150ms ease-out;
+    position: fixed;
+    pointer-events: none;
+    transform: none;
+    transform-origin: center center;
+    // mix-blend-mode: difference;
+    overflow: visible;
+  }
+  // & {
+  // }
+  &__trace {
+    z-index: 499;
+    opacity: 0.5;
+    #path {
+      stroke: $color;
+    }
+    &.hover {
+      opacity: 0;
+    }
+  }
+  .cursor-circle {
+    fill: $color;
+    stroke: $color;
+    // stroke: invert($color, 100%);
+    // 포인터
+    // transition: 150ms all;
+    transition: 150ms transform;
+    transform-origin: 50% 50%;
+  }
+  &.hover {
+    display: block;
+    mix-blend-mode: difference;
+    // mix-blend-mode: hard-light;
+    // mix-blend-mode: inherit; // difference;
+    // mix-blend-mode: lighten;
+    $sub-color: #fff;
+    .cursor-circle {
+      fill: $sub-color;
+      stroke: $sub-color;
+      transform: scale((80 / 16)) !important;
+    }
+    + #cursor__trace {
+      // mix-blend-mode: difference;
+      #path {
+        display: none;
+        stroke: $sub-color;
+      }
+    }
+  }
+  &.hover--logo {
+    //로고 등 색상 변화 없어야 하는 부분에서는 diff 해제
+    mix-blend-mode: soft-light !important;
+  }
+}
